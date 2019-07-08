@@ -6,34 +6,38 @@ import java.util.Scanner;
 public class App2 {
   static Scanner scan;
   
+
+
+  
   public static void main(String[] args) {
+    
+  
     scan = new Scanner(System.in);
     
-    int [] num = new int [100];
-    String [] name = new String [100];
-    String [] email = new String [100];
-    int [] password = new int [100];
-    String [] picture = new String [100];
-    int [] phoneNum = new int [100];
-    Date [] ed = new Date [100];
+    Member[] members = new Member[100];
     
-   
     
-    int i=0;
-    for( ;i<num.length;i++) {
-     num[i] =getIntValue("번호?");
     
-     name[i] =getStringValue("이름?");
+    int i =0;
+    for( ; i < members.length;i++) {
+
+      Member member = new Member();
+      
+     member.num =getIntValue("번호?");
+    
+     member.name =getStringValue("이름?");
   
-     email[i] =getStringValue("이메일?");
+     member.email =getStringValue("이메일?");
     
-     password[i] = getIntValue("암호?");
+     member.password = getIntValue("암호?");
     
-     picture[i] = getStringValue("사진?");
+     member.photo = getStringValue("사진?");
    
-     phoneNum[i] = getIntValue("전화?");
+     member.tel = getIntValue("전화?");
     
-     ed[i] =getDateValue("가입일?");
+     member.registeredDate =getDateValue("가입일?");
+     
+     members[i] =member;
     
      System.out.println("계속 입력하시겠습니까? Y/n");
      String response = scan.nextLine();
@@ -42,10 +46,19 @@ public class App2 {
     }
     
     
+    
+    
+    
     for(int i2=0; i2<=i; i2++) {
-      System.out.printf("%s,%s,%s,%s,%s,%s,%s\n",num[i2],name[i2],email[i2],password[i2],picture[i2],phoneNum[i2],ed[i2]);
+      Member member = members[i2];
+      System.out.printf("%s,%s,%s,%s,%s,%s,%s\n"
+          ,member.num,member.name,member.email,member.password,member.photo,member.tel,member.registeredDate);
     
     }
+    
+    
+    
+    
     
     
   }

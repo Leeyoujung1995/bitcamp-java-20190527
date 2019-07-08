@@ -65,25 +65,15 @@ public class App {
 
       String response = keyScan.nextLine();
 
-      System.out.println();
-
-      
-
       if (response.equals("n"))
-
         break;
-
-      
-
     }
 
-    
-
     keyScan.close();
-
     
     System.out.println();
 
+    
     for (int i2 = 0; i2 <= i; i2++) {
 
       // 레퍼런스 배열에서 한 개의 인스턴스 주소를 꺼낸다.
