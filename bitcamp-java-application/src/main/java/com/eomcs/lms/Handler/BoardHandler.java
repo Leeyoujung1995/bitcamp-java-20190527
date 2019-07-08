@@ -1,13 +1,15 @@
-package com.eomcs.lms;
+package com.eomcs.lms.Handler;
 
 import java.sql.Date;
 import java.util.Scanner;
+import com.eomcs.lms.domain.Board;
+import com.eomcs.lms.util.Input;
 
 public class BoardHandler {
-  static Board[] boards = new Board[100];
-  static int boardsSize = 0;
-  static Scanner keyScan;
-  static void addBoard() {
+ private static Board[] boards = new Board[100];
+ private static int boardsSize = 0;
+ public static Scanner keyScan;
+public  static void addBoard() {
     Board board = new Board();
     
     board.no = Input.getIntValue("번호? ");
@@ -20,7 +22,7 @@ public class BoardHandler {
 
  
   
-  static void listBoard() {
+ public static void listBoard() {
     for (int i = 0; i < boardsSize; i++) {
       Board board = boards[i];
       System.out.printf("%s, %s, %s, %s\n", 
