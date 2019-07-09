@@ -5,7 +5,7 @@ import java.util.Scanner;
 import com.eomcs.lms.domain.Board;
 import com.eomcs.lms.util.Input;
 
-public class BoardHandler {
+public class BoardHandler2 {
  private static Board[] boards = new Board[100];
  private static int boardsSize = 0;
  public static Scanner keyScan;
@@ -16,7 +16,6 @@ public  static void addBoard() {
     board.contents = Input.getStringValue("내용? ");
     board.createdDate = new Date(System.currentTimeMillis()); 
     board.viewCount=Input.getIntValue("조회수는?");
-    
     
     boards[boardsSize++] = board;
     System.out.println("저장하였습니다.");
