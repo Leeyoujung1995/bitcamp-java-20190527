@@ -24,7 +24,7 @@ public class Test08 {
     System.out.printf("%s 님의 총점은 %d입니다.\n", name, sum);
   }
   
-  // 2) 가변 파라미터는 1개만 가능하다. 
+  // 2) 가변 파라미터는 1개만 가능하다. //메소드당한개가능//가변파라미터는한개만가능하고 뒤에와야한다.
   /*
   static int compute2(int...value, String... name) {// 컴파일 오류!
     int sum = 0; 

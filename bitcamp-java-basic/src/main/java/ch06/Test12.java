@@ -4,6 +4,7 @@ package ch06;
 public class Test12 {
   public static void main(String[] args) {
     int result = sum1(5, sum1(4, sum1(3, sum1(2, sum1(1, 0)))));
+    
     System.out.println(result);
     
     int result2 = 0; 
@@ -23,7 +24,7 @@ public class Test12 {
     return a + b;
   }
   
-  static long sum2(long n) {
+  static long sum2(int n) {
     if (n == 1)
       return n;
     

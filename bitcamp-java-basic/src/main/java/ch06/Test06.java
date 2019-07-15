@@ -9,6 +9,7 @@ public class Test06 {
     System.out.println(result);
     
     result = plus(2);
+    
     System.out.println(result);
     
     result = plus(2, 3);

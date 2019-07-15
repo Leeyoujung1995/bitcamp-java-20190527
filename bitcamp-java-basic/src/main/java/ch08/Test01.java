@@ -1,6 +1,8 @@
 // 클래스 필드 
 package ch08;
 
+import java.util.Scanner;
+
 class My1 {
   // My1 인스턴스(데이터 타입의 값)를 다룰 때 사용할 값이라면 따로 떼어 놓지 말고,
   // My1 클래스에 선언하는 것이 사용할 때 편하다.
@@ -31,7 +33,7 @@ class My1 {
 
 public class Test01 {
   public static void main(String[] args) {
-    
+   
     
     My1 obj1 = new My1();
     obj1.name = "홍길동";

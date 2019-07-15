@@ -5,9 +5,9 @@ public class Test07 {
   public static void main(String[] args) {
     // 가변 파라미터는 호출하는 쪽에서 배열을 만들 필요가 없다.
     // 자바가 자동으로 배열을 만든다.
-    plus1();
-    plus1(10);
-    plus1(10, 20);
+    plus1();//-->plus1(new int[] {});이렇게 바뀜!!
+    plus1(10);//-->plus1(new int[] {10});이렇게 바뀜!!
+    plus1(10, 20);//-->plus1(new int[] {10,20});이렇게 바뀜!!
     
     // 배열 레퍼런스는 호출자가 만들어서 넘겨야 한다. 그래서 호출할 때는 가변 파라미터가 편하다.
     plus2(new int[] {});
@@ -17,7 +17,7 @@ public class Test07 {
     
   }
   
-  // 가변 파라미터 
+  // 가변 파라미터 //이게 쓰기 편함
   static int plus1(int... value) {
     int sum = 0; 
     for (int i = 0; i < value.length; i++) {
@@ -27,7 +27,7 @@ public class Test07 {
   }
   
   // 배열 레퍼런스 파라미터
-  static int plus2(int[] value) {
+  static int plus2(int[] value) {//반드시 주소배열을 넘겨라!! //plus2() //plus2(10);-->둘다 컴파일 오류
     int sum = 0; 
     for (int i = 0; i < value.length; i++) {
       sum += value[i];

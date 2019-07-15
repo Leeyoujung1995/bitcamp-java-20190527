@@ -18,7 +18,7 @@ public class Test02 {
     
     String s2 = "Hello"; // 이미 같은 문자열을 가진 인스턴스가 있기 때문에 기존 인스턴스 주소를 리턴.
                          // 왜? 메모리가 절약된다!
-    
+   
     if (s1 == s2)
       System.out.println("s1 == s2");
     else

@@ -12,6 +12,7 @@ public class Test01 {
     // 낱개의 데이터를 저장할 변수를 여러 개 선언하는 수 밖에 없다!
     // 그래서 우리는 성적 데이터를 저장할 변수를 다음과 같이 낱개로 선언하였다.
     String name = "홍길동";
+    String str = new String("dd");
     int kor = 100;
     int eng = 100;
     int math = 100;

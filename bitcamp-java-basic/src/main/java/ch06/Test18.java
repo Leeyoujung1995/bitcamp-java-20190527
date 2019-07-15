@@ -9,7 +9,7 @@ public class Test18 {
     //
     
     // JVM의 전체 프로퍼티 목록 가져오기
-    java.util.Properties props = System.getProperties();
+    java.util.Properties props = System.getProperties();//실제로는 객체의 주소값을 넘긴다.
     
     java.util.Set keySet = props.keySet();
     

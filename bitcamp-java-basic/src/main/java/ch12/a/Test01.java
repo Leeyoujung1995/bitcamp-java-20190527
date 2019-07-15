@@ -11,6 +11,9 @@ public class Test01 {
     c.minus(27);
     System.out.println(c.result);
     
+    
+    
+    
     // 클래스를 만든 개발자의 의도에 벗어나 사용한 예:
     Calculator c2 = new Calculator();
     c2.plus(100);
@@ -22,7 +25,7 @@ public class Test01 {
     //    최종 계산 결과는 옳바르지 않을 수 있다.
     // => 문제는 현재 상태에서 이것을 막지 못한다는 것이다.
     //
-    c2.result = 100;
+    //c2.result = 100;//결과 값의 왜곡이 불가하다. 이것이 캡슐화 문법이 필요한 이유이다.
     
     c2.minus(27);
     
