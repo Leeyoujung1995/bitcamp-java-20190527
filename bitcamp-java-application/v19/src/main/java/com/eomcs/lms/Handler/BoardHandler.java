@@ -45,6 +45,24 @@ public BoardHandler(Input input) {
           board.getNo(), board.getContents(), board.getCreatedDate(), board.getViewCount());
     }
  }
+
+
+public void detailBoard() {
+  // TODO Auto-generated method stub
+  
+}
+
+
+public void updateBoard() {
+  // TODO Auto-generated method stub
+  
+}
+
+
+public void deleteBoard() {
+  // TODO Auto-generated method stub
+  
+}
 }
   
 

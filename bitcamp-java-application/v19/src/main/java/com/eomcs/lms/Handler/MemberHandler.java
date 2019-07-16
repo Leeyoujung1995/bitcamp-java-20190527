@@ -36,6 +36,21 @@ public class MemberHandler {
           member.getTel(), member.getRegisteredDate());
     }
   }
+
+public void detailMember() {
+  // TODO Auto-generated method stub
+  
+}
+
+public void updateMember() {
+  // TODO Auto-generated method stub
+  
+}
+
+public void deleteMember() {
+  // TODO Auto-generated method stub
+  
+}
 }
   
 
