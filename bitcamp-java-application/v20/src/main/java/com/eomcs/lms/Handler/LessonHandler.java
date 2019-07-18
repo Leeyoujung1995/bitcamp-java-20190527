@@ -2,11 +2,11 @@ package com.eomcs.lms.Handler;
 
 
 import com.eomcs.lms.domain.Lesson;
-import com.eomcs.util.ArrayList;
 import com.eomcs.util.Input;
+import com.eomcs.util.LinkedList;
 
 public class LessonHandler {
- private ArrayList<Lesson> lessonList = new ArrayList<>();
+ private LinkedList<Lesson> lessonList = new LinkedList<>();
  
  private  Input input;
  

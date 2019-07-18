@@ -2,11 +2,11 @@ package com.eomcs.lms.Handler;
 
 import java.sql.Date;
 import com.eomcs.lms.domain.Board;
-import com.eomcs.util.ArrayList;
 import com.eomcs.util.Input;
+import com.eomcs.util.LinkedList;
 
 public class BoardHandler {
-  private ArrayList<Board> boardList = new ArrayList<>();
+  private LinkedList<Board> boardList = new LinkedList<>();
   private Input input;
   
   // BoardHandler가 사용하는 Input 객체를 반드시 설정하도록 강제해보자!

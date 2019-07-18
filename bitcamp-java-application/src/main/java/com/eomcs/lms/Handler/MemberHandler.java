@@ -2,12 +2,12 @@ package com.eomcs.lms.Handler;
 
 import java.sql.Date;
 import com.eomcs.lms.domain.Member;
-import com.eomcs.util.ArrayList;
 import com.eomcs.util.Input;
+import com.eomcs.util.LinkedList;
 
 public class MemberHandler {
   
-  private ArrayList<Member> memberList = new ArrayList<>();
+  private LinkedList<Member> memberList = new LinkedList<>();
   private Input input;
   
   public MemberHandler(Input input) {
