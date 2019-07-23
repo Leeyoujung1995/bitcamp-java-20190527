@@ -1,7 +1,11 @@
 // 같은 타입으로 묶지 않았을 때
 package ch17.b;
 
+import java.util.Scanner;
+
 public class Test01 {
+
+  
 
   public static void main(String[] args) {
     int[] values = {23, 7, 12, 15, 9, 2, 22, 8, 11, 25, 13, 5};

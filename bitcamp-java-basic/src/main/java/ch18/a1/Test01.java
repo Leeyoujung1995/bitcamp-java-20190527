@@ -1,29 +1,33 @@
-package ch18.a;
+//인터페이스 사용전
+package ch18.a1;
 
 public class Test01 {
 
   public static void main(String[] args) {
-    // 도구 사용하기
-    
-    // 어떤 규칙에 따르는 도구인지 
-    // => A 규칙에 따라 만든 도구를 사용하겠다. 
-    A tool;
-    
-    // A 규칙에 따라 만든 도구를 사용한다.
-    use(new ToolA());
-    use(new ToolB());
-    
-    // A 규칙을 따르지 않은 객체를 파라미터에 넘길 수 없다.
-    //use(new String("Hello")); // 컴파일 오류!
 
+    //객체의 기능을 사용해보자!
+    //=>각 도구(객체)의 사용법이 다르기 떄문에 각 도구에 맞는 메서드를 준비해야한다.
+    //=>그래서 각 도구에 맞는 use() 메서드를 각각 따로 준비했다.
+    
+    //1)ToolA 객체 사용하기
+    use(new ToolA());
+    
+    //2)ToolB 객체 사용하기
+    use(new ToolB());
+   
   }
   
-  static void use(A tool) {
-    // tool 레퍼런스가 가리키는 인스턴스에 대해 A 규칙에 정의된 메서드를 호출한다.
-    // 그러면 해당 인스턴스의 클래스를 찾아 메서드를 호출한다.
+  static void use(ToolA tool) {
+   //ToolA 객체를 사용하려면 m1() 메서드를 호출해야한다.
     tool.m1();
   }
 
+  
+  
+  static void use(ToolB tool) {
+   //ToolB 객체를 사용하려면 m2() 메서드를 호출해야한다.
+    tool.m2();
+  }
 }
 
 

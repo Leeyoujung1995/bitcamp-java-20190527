@@ -1,4 +1,4 @@
-package algorithm.data_structure.stack2;
+package algorithm.data_structure.stack.step2;
 
 public class Stack<E> {
   

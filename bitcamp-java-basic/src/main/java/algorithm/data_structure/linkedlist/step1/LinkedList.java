@@ -1,4 +1,4 @@
-package algorithm.data_structure.linkedlist;
+package algorithm.data_structure.linkedlist.step1;
 
 public class LinkedList {
   protected Node head;

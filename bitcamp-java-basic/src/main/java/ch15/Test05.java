@@ -59,6 +59,11 @@ class My5 {
 
 public class Test05 {
   public static void main(String[] args) {
+    
+    
+
+    
+    
     My5 obj1 = new My5();
     obj1.name = "홍길동";
     obj1.age = 20;

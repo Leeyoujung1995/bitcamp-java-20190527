@@ -1,16 +1,21 @@
-// 인터페이스 구현 - 새로 추가한 규칙에 따라 클래스를 구현한다. 
-package ch18.g;
+//새로 프로젝트를 위해 기존 규격에 새로 규칙(watermark())를 추가하였고 이 클래스는 그 규칙을 구현하였다
+package ch18.g3;
 
-public class My3 implements B {
-  // 원래 B에 선언된 메서드 구현 
+import ch18.g2.Printer;
+
+//패키지 g3처럼 새 규칙을 추가하기 위해 새 규격(interface)을 정의할 필요가 없다
+//"디폴트 메서드"라는 문법을 사용하면 기존 클래스에 영향을 주지 않고
+//새 규칙을 추가할 수 있다.
+public class WaterMarkPrinter implements Printer2 {
+  // Printer 인터페이스에 선언된 규칙을 구현한다.
   @Override
-  public void m1() {
-    System.out.println("My3.m1()");
+  public void print(String text) {
+    System.out.println("WaterMarkPrinter:"+text);
   }
   
-  // 나중에 디폴트로 추가한 메서드
+  //Printer
   @Override
-  public void m2() {
-    System.out.println("My3.m2()");
+  public void watermark(String title) {
+    System.out.println("**"+title+"**");
   }
 }
