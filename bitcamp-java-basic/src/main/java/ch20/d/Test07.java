@@ -44,7 +44,15 @@ public class Test07 {
     // 따라서 다음과 같이 Iterator를 사용하려 하면 실행 오류가 발생한다.
     // 해결책?
     // => 값을 변경하면 다시 Iterator를 얻어야 한다.
-    // 
+    
+    //다음과 같이 key 가 들어 있는 목록에서 key를 꺼내 줄 Iterator를 다시 리턴 받아야 한다
+    //iterator = keySet.iterator();
+    while(iterator.hasNext()) {
+      System.out.println(iterator.next());
+    }
+    
+    
+    
     System.out.println(iterator.next());
     System.out.println(iterator.next());
     

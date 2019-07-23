@@ -42,7 +42,7 @@ public class Test06 {
   }
   
   public static void main(String[] args) {
-    
+    //추상 메서드를 한개만 갖고 있는 인터페이스에 대해 람다 문법으로 익명 클래슬 만들수 있다.
     Player p1 = () -> System.out.println("Player...");
     p1.play();
     

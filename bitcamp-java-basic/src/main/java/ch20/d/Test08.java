@@ -45,6 +45,13 @@ public class Test08 {
     // 해결책?
     // => 값을 변경하면 다시 Iterator를 얻어야 한다.
     // 
+    
+    //HashMap과 마찬가지로 Iterator를 얻은 후에 HashTable의 값을 변경했다면
+    //다음과 같이 iterator값을 얻어야한다
+    iterator = keySet.iterator();
+    while(iterator.hasNext()) {
+      System.out.println(iterator.next());
+    }
     System.out.println(iterator.next());
     System.out.println(iterator.next());
     
