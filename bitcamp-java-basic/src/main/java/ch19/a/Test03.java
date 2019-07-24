@@ -66,6 +66,7 @@ public class Test03 {
     //==>non-static nested class(inner class)사용
     X.B obj2;
     
+    
     //X의 inner 클래스를 사용하려면 반드시 X의 인스턴스가 있어야 한다
     //obj2 = new X.B();//컴파일오류
     

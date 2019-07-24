@@ -16,6 +16,7 @@ class Car {
   public Car(String model) {
     this.model = model;
   }
+  
 }
 
 // 익명 클래스의 예제를 위한 인터페이스
@@ -33,6 +34,9 @@ public class Test04 {
     //로컬 클래스 사용
      A obj = new A();
     
+     
+     
+     
     // 익명 클래스 정의1:
     // => Car 클래스를 상속 받아 익명 클래스를 정의한다.
     // => 인스턴스를 생성할 때 수퍼 클래스인 Car의 기본 생성자를 호출한다.
@@ -40,10 +44,14 @@ public class Test04 {
     Car obj2 = new Car() {
       @Override
       public void run() {
-        System.out.println(this.model + " : 달려라! 달려라!");
+        System.out.println(this.model + " : 미정이 달려라!");
       }
     }; // new 명령은 인스턴스를 생성하는 명령이기 때문에 문장 끝에 세미콜론(;)을 붙여야 한다.
     obj2.run();
+    
+    
+    
+    
     
     // 예2:
     // => 클래스 이름 다음에 오는 것이 수퍼 클래스의 생성자를 지정하는 문법이다.
@@ -55,6 +63,8 @@ public class Test04 {
       }
     };
     obj3.run();
+    
+    
     
     // 예3: 
     // => 인터페이스를 구현하여 익명 클래스를 만들기
@@ -68,6 +78,10 @@ public class Test04 {
       }
     };
     obj4.write();
+    
+    
+    
+    
     
     //주의
     //=>수퍼 클래스와 인터페이스를 동시에 지정하여 익명 클래스를 만들 수 없다
