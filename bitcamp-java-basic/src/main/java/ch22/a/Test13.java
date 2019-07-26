@@ -14,19 +14,24 @@ public class Test13 {
     
     System.out.println("삭제 완료!");
   }
-  
-  static void delete(File dir) {
-    File[] files = dir.listFiles();
-    for (File file : files) {
-      if (file.isFile()) {
+
+  static void delete(File path) {
+    
+  //1.디렉토리가 포함하고 있는 하위 디렉토리나 파일 목록을 얻는다
+    File[] files = path.listFiles();
+  //2.파일은 삭제하고 디렉토리는 재귀호출로 삭제한다.
+    for(File file : files) {
+      if(file.isFile())
         file.delete();
-      } else {
+      else
         delete(file);
-      }
     }
-    dir.delete();
+  //3.디렉토리가 포함하고 있는 하위 디렉토리나 파일이 모두 삭제되었다면 현재의 디렉토리를 삭제한다.
+    path.delete();
   }
-}
+
+  }
+
 
 
 

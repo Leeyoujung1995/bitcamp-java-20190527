@@ -17,12 +17,8 @@ public class Test10_4 {
     //      () -> 문장 한개
     //      () -> {문장1; 문장2; 문장3;}
     //
-    String[] names = file.list((File dir, String name) -> {
-        if (name.endsWith(".txt"))
-          return true;
-        else 
-          return false;
-    });
+    String[] names = file.list((File dir, String name) -> name.endsWith(".txt"));
+    //한문장이면 중괄호 생략하고 리턴도 생략하고 세미콜론도 생략ㅎㄴ다
     
     for (String name : names) {
       System.out.println(name);

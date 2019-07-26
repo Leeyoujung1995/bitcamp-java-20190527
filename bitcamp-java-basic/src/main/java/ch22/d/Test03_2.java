@@ -1,5 +1,5 @@
 // String 읽기 - BufferedReader 붙이기
-package ch22.d;
+package ch22.b.character_stream;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

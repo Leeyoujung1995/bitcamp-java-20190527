@@ -1,5 +1,5 @@
 // String 읽기 - CharBuffer 사용하여 읽기
-package ch22.d;
+package ch22.b.character_stream;
 
 import java.io.FileReader;
 import java.nio.CharBuffer;

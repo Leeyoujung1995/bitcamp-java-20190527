@@ -15,8 +15,8 @@ public class Test14 {
     findClass(dir, "");
     System.out.println("완료!");
   }
-  
-  static void findClass(File dir, String packageName) {
+  /*
+ static void findClass(File dir, String packageName) {
     File[] files = dir.listFiles(pathname -> 
       pathname.isDirectory() ||
       (pathname.isFile() && pathname.getName().endsWith(".class")) ?
@@ -31,6 +31,29 @@ public class Test14 {
         findClass(file, packageName + file.getName() + ".");
       }
     }
+    */
+    static void findClass(File path, String packageName) {
+    //1.path가 파일이면 패키지 이름과 파일 이름을 합쳐 출력하고 리턴한다.
+    //  =>단 파일 이름에서 .class 확장자 명은 제외한다
+    //  =>파일 명이 Hello.class이고 패키지명이 aaa.bbb라면 출력할 이름은 aaa.bbb.Hello이다
+    if(path.isFile()) {
+      System.out.printf("%s.%s\n",packageName,path.getName().replace(".class",""));
+      return;
+    }
+    //2.path가 디렉토리라면 하위 디렉토리와 파일 목록을 얻는다.
+    //    =>단 필터를 이용하여 디렉토리와 클래스 파일 (.class)목록만 추출한다 
+    File[] files = path.listFiles();
+    
+    //3.하위 디렉토리와 파일 목록에서  클래스를 찾는다.
+    for(File file :files) {
+      if(file.isDirectory())
+      findClass(file,packageName + "." +file.getName());
+      else{
+        findClass(file,packageName);
+      }
+    }
+    
+    
   }
 }
 

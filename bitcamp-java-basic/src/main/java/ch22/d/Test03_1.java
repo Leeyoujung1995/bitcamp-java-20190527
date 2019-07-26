@@ -1,5 +1,5 @@
 // String 출력하기
-package ch22.d;
+package ch22.b.character_stream;
 
 import java.io.FileWriter;
 
