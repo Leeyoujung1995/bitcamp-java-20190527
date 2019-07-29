@@ -5,11 +5,11 @@ package ch22.b.byte_Stream;
 import java.io.FileInputStream;
 
 public class Test01_2 {
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception{
     
     // 파일의 바이너리 데이터 읽기
     // => FileInputStream 클래스를 사용한다.
-    try {
+   
       // 1) 데이터를 읽기를 담당할 객체를 생성한다.
       FileInputStream in = new FileInputStream("data.bin");
       
@@ -41,9 +41,7 @@ public class Test01_2 {
       
       in.close();
       
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+    
     
     System.out.println("출력 완료!");
   }

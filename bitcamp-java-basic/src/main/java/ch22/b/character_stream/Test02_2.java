@@ -5,12 +5,12 @@ import java.io.FileReader;
 
 public class Test02_2 {
 
-  public static void main(String[] args) {
+  public static void main(String[] args)throws Exception {
     
     // FileReader
     // => 문자 단위로 데이터를 읽는 일을 한다.
     //
-    try (FileReader in = new FileReader("data.txt")) {
+    FileReader in = new FileReader("data.txt");
       
       char[] cbuf = new char[1024];
       
@@ -22,10 +22,7 @@ public class Test02_2 {
       }
       System.out.println();
       
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    
+   in.close();
     System.out.println("읽기 완료!");
   }
 

@@ -40,9 +40,9 @@ class Monitor9 {
 public class Test11 {
   public static void main(String[] args) {
     // 인스턴스 생성
-    
+  
     // 생성자를 지정할 때 파라미터의 값에 결정된다.
-    new Monitor9(); // 기본 생성자를 지정한다.
+     new Monitor9(); // 기본 생성자를 지정한다.
     new Monitor9(50, 50); // Monitor9(int, int) 생성자를 지정한다.
     new Monitor9(50, 50, 1920, 1080); // Monitor9(int, int, int, int) 생성자를 지정한다.
     
