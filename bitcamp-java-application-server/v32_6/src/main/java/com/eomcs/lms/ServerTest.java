@@ -45,59 +45,58 @@ public class ServerTest {
       member.setPhoto("leem.gif");
       member.setTel("1111-2222");
 
+      System.out.println("------------------");
       if (!add(member)) {
         error();
       }
       System.out.println("------------------");
-      
       if (!list()) {
         error();
       }
       System.out.println("------------------");
-      
       if (!delete()) {
         error();
       }
       System.out.println("------------------");
-      
       if (!list()) {
         error();
       }
       System.out.println("------------------");
-      
       if (!detail()) {
         error();
       }
       System.out.println("------------------");
-      
       member = new Member();
       member.setNo(1);
-      member.setName("홍길동2");
-      member.setEmail("hong2@test.com");
+      member.setName("홍길동");
+      member.setEmail("hong@test.com");
       member.setPhoto("hong.gif");
       member.setTel("1111-1111");
-      
       if (!update(member)) {
         error();
       }
       System.out.println("------------------");
-      
       if (!list()) {
         error();
       }
       System.out.println("------------------");
-      
       if (!quit()) {
         error();
       }
     
-    }  catch (IOException e) {
+    } catch (RequestException e) {
+      // 서버에서 요청 처리에 실패했다면 
+      // 서버가 보낸 이유를 받는다.
+      System.out.printf("오류: %s\n", in.readUTF());
+      
+    } catch (IOException e) {
       e.printStackTrace();
     }
 
     System.out.println("서버와 연결 끊음.");
   }
   
+
   private static void error() throws Exception {
     System.out.printf("오류: %s\n", in.readUTF());
   }
@@ -126,7 +125,7 @@ public class ServerTest {
     System.out.println("처리 완료!");
     return true;
   }
-  
+
   private static boolean detail() throws Exception {
     out.writeUTF("/member/detail");
     out.writeInt(1);
@@ -137,13 +136,14 @@ public class ServerTest {
       return false;
     
     System.out.println("처리 완료!");
-    System.out.println(in.readObject());
     
+    System.out.println(in.readObject());
+   
     return true;
   }
-  
-  private static boolean update(Member m) throws Exception {
+  private static boolean update(Member m)throws Exception {
     out.writeUTF("/member/update");
+
     out.writeObject(m);
     out.flush();
     System.out.print("update 요청함 => ");
@@ -171,11 +171,10 @@ public class ServerTest {
     for (Member m : list) {
       System.out.println(m);
     }
-    list.clear();
     return true;
   }
 
-  private static boolean add(Member m) throws IOException {
+  private static boolean add(Member m) throws IOException, RequestException {
     out.writeUTF("/member/add");
     out.writeObject(m);
     out.flush();
