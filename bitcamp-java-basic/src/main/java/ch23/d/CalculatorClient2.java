@@ -19,7 +19,7 @@ Stateless 통신 방법
 => 예
    - HTTP 프로토콜, 메신저 등 
  */
-public class CalculatorClient {
+public class CalculatorClient2 {
   public static void main(String[] args) {
     
     Scanner keyboard = new Scanner(System.in);

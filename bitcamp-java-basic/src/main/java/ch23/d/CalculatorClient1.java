@@ -22,7 +22,7 @@ Stateful 통신 방법
 => 예
    - telnet/ssh, ftp/sftp 등
  */
-public class CalculatorClient2 {
+public class CalculatorClient1 {
   public static void main(String[] args) {
     
     Scanner keyboard = new Scanner(System.in);

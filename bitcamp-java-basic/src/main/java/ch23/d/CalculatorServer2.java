@@ -7,7 +7,7 @@ import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class CalculatorServer {
+public class CalculatorServer2 {
   public static void main(String[] args) {
     
     try (ServerSocket serverSocket = new ServerSocket(8888)) {

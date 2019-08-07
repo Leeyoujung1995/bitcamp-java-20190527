@@ -12,7 +12,7 @@ Stateful 응용
 => 클라이언트와 서버가 연결되면 연결을 끊기 전까지 
    작업 정보를 계속 유지할 수 있다.
  */
-public class CalculatorClient2 {
+public class CalculatorClient1 {
   public static void main(String[] args) {
     
     Scanner keyboard = new Scanner(System.in);
