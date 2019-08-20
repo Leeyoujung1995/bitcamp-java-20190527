@@ -11,16 +11,8 @@ create table test1 (
   tel varchar(20)
 );
 
-insert into test1(name,class,working) values('aaa','java100','Y');
-insert into test1(name,class,working) values('bbb','java100','N');
-insert into test1(name,class,working) values('ccc','java100','Y');
-insert into test1(name,class,working) values('ddd','java100','N');
-insert into test1(name,class,working) values('eee','java100','Y');
-insert into test1(name,class,working) values('kkk','java101','N');
-insert into test1(name,class,working) values('lll','java101','Y');
-insert into test1(name,class,working) values('mmm','java101','N');
-insert into test1(name,class,working) values('nnn','java101','Y');
-insert into test1(name,class,working) values('ooo','java101','N'); 
+
+
 ```
 
 ## select
@@ -215,8 +207,7 @@ create table test1 (
   regdt datetime not null
 );
 
-alter table test1
-  add constraint primary key (no),
+alter table test1 add constraint primary key (no),
   modify column no int not null auto_increment;
 
 insert into test1(title, regdt) values('aaaa', '2017-01-27');

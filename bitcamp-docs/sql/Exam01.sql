@@ -74,9 +74,9 @@ DB 객체(테이블, 뷰, 함수, 트리거 등)를 생성, 변경, 삭제하는
   );
 
 데이터 입력 테스트:
-> insert into test1(no, name) values(1, 'aaa');
-> insert into test1(no, name) values(null, 'bbb'); /* 실행 오류 */
-> insert into test1(no, name) values(3, null);
+ insert into test1(no, name) values(1, 'aaa');
+ insert into test1(no, name) values(null, 'bbb'); /* 실행 오류 */
+ insert into test1(no, name) values(3, null);
 
 #### 기본값 지정하기
 입력할 때 컬럼을 생략하면 지정된 기본값이 대신 입력된다.
@@ -115,22 +115,22 @@ DB 객체(테이블, 뷰, 함수, 트리거 등)를 생성, 변경, 삭제하는
   c4 numeric /* int와 같다 */
   );
   
-> insert into test1(c1) values(100);
-> insert into test1(c1) values(3.14); /* 소수점 이하 반올림하고 짜름 */
-> insert into test1(c1) values(100.98); /* 소수점 이하 반올림하고 짜름 */
-> insert into test1(c2) values(100);
-> insert into test1(c2) values(3.14);
-> insert into test1(c2) values(3.14159); 
-> insert into test1(c3) values(100);
-> insert into test1(c3) values(123456789); /* 입력 오류. 5자리 초과 */
-> insert into test1(c3) values(12345); /* 입력 오류. 1자리 초과 */
-> insert into test1(c3) values(1234);
-> insert into test1(c3) values(3.14);
-> insert into test1(c3) values(3.14159); /* 2자리를 초과한 값은 반올림. */
-> insert into test1(c3) values(3.14551); /* 2자리를 초과한 값은 반올림. */
-> insert into test1(c4) values(1234567890); 
-> insert into test1(c4) values(12.34567890); /* 소수점은 반올림 처리됨 */
-> insert into test1(c4) values(12345678.90); /* 소수점은 반올림 처리됨 */
+ insert into test1(c1) values(100);
+ insert into test1(c1) values(3.14); /* 소수점 이하 반올림하고 짜름 */
+ insert into test1(c1) values(100.98); /* 소수점 이하 반올림하고 짜름 */
+ insert into test1(c2) values(100);
+ insert into test1(c2) values(3.14);
+ insert into test1(c2) values(3.14159); 
+ insert into test1(c3) values(100);
+ insert into test1(c3) values(123456789); /* 입력 오류. 5자리 초과 */
+ insert into test1(c3) values(12345); /* 입력 오류. 1자리 초과 */
+ insert into test1(c3) values(1234);
+ insert into test1(c3) values(3.14);
+ insert into test1(c3) values(3.14159); /* 2자리를 초과한 값은 반올림. */
+ insert into test1(c3) values(3.14551); /* 2자리를 초과한 값은 반올림. */
+ insert into test1(c4) values(1234567890); 
+ insert into test1(c4) values(12.34567890); /* 소수점은 반올림 처리됨 */
+ insert into test1(c4) values(12345678.90); /* 소수점은 반올림 처리됨 */
 
 #### char(n)
 - 최대 n개의 문자를 저장.
@@ -156,19 +156,19 @@ DB 객체(테이블, 뷰, 함수, 트리거 등)를 생성, 변경, 삭제하는
   );
 
 입력 테스트:
-> insert into test1(c1) values('');
-> insert into test1(c1) values('abcde');
-> insert into test1(c1) values('가나다라마'); /* 한글 영어 상관없이 5자 */
-> insert into test1(c1) values('abcdefghi'); /* 입력 크기 초과 오류! */
-> insert into test1(c1) values('가나다라마바'); /* 입력 크기 초과 오류! */
-> insert into test1(c2) values('');
-> insert into test1(c2) values('abcde');
-> insert into test1(c2) values('abcdefghi'); /* 입력 크기 초과 오류! */
+ insert into test1(c1) values('');
+ insert into test1(c1) values('abcde');
+ insert into test1(c1) values('가나다라마'); /* 한글 영어 상관없이 5자 */
+ insert into test1(c1) values('abcdefghi'); /* 입력 크기 초과 오류! */
+ insert into test1(c1) values('가나다라마바'); /* 입력 크기 초과 오류! */
+ insert into test1(c2) values('');
+ insert into test1(c2) values('abcde');
+ insert into test1(c2) values('abcdefghi'); /* 입력 크기 초과 오류! */
 
 고정 크기와 가변 크기 비교:
-> insert into test1(c1) values('abc');
-> insert into test1(c2) values('abc');
-> select * from test1 where c1='abc'; 
+ insert into test1(c1) values('abc');
+ insert into test1(c2) values('abc');
+ select * from test1 where c1='abc'; 
 DBMS 중에는 고정 크기인 컬럼의 값을 비교할 때 빈자리까지 검사하는 경우도 있다.
 즉 c1='abc'에서는 데이터를 찾지 못하고, c1='abc  '여야만 데이터를 찾는 경우가 있다.
 그러나 mysql은 고정크기 컬럼이더라도 빈자리를 무시하고 데이터를 찾는다.
@@ -196,11 +196,11 @@ DBMS 중에는 고정 크기인 컬럼의 값을 비교할 때 빈자리까지 �
   ); 
 
 입력 테스터:
-> insert into test1(c1) values('2017-11-21');
-> insert into test1(c2) values('16:12:35');
-> insert into test1(c3) values('2017-11-21 16:13:33');
-> insert into test1(c1) values('2017-11-21 16:13:33'); /* 날짜 정보만 저장*/
-> insert into test1(c2) values('2017-11-21 16:13:33'); /* 시간 정보만 저장*/
+ insert into test1(c1) values('2017-11-21');
+ insert into test1(c2) values('16:12:35');
+ insert into test1(c3) values('2017-11-21 16:13:33');
+ insert into test1(c1) values('2017-11-21 16:13:33'); /* 날짜 정보만 저장*/
+ insert into test1(c2) values('2017-11-21 16:13:33'); /* 시간 정보만 저장*/
 
 #### 불린 타입
 - 보통 true, false를 의미하는 값을 저장할 때는 정수 1 또는 0으로 표현한다.
@@ -231,7 +231,8 @@ DBMS 중에는 고정 크기인 컬럼의 값을 비교할 때 빈자리까지 �
 > insert into test1(c3) values('0'); /* false */
 > insert into test1(c3) values(1); /* true */
 > insert into test1(c3) values(0); /* false */
-
+ insert into test1(c3) values(true); 
+> insert into test1(c3) values(false);
 
 ### 키 컬럼 지정 
 
