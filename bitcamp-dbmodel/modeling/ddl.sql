@@ -1,4 +1,5 @@
 SET FOREIGN_KEY_CHECKS = 0;
+
 -- 학생
 DROP TABLE IF EXISTS students RESTRICT;
 
@@ -27,7 +28,7 @@ DROP TABLE IF EXISTS room_photos RESTRICT;
 DROP TABLE IF EXISTS subjects RESTRICT;
 
 -- 강사강의과목
-DROP TABLE IF EXISTS teachers_subject RESTRICT;
+DROP TABLE IF EXISTS teacher_subject RESTRICT;
 
 -- 강사강의배정
 DROP TABLE IF EXISTS lecture_teacher RESTRICT;
@@ -36,7 +37,7 @@ DROP TABLE IF EXISTS lecture_teacher RESTRICT;
 DROP TABLE IF EXISTS members RESTRICT;
 
 -- 학력
-DROP TABLE IF EXISTS school_gradle RESTRICT;
+DROP TABLE IF EXISTS school_grade RESTRICT;
 
 -- 학생
 CREATE TABLE students (
@@ -57,7 +58,7 @@ ALTER TABLE students
 CREATE TABLE lectures (
   lecture_id INTEGER      NOT NULL COMMENT '강의번호', -- 강의번호
   title      VARCHAR(255) NOT NULL COMMENT '과정명', -- 과정명
-  start_id   DATE         NOT NULL COMMENT '시작일', -- 시작일
+  start_dt   DATE         NOT NULL COMMENT '시작일', -- 시작일
   end_dt     DATE         NOT NULL COMMENT '종료일', -- 종료일
   capa       INTEGER      NOT NULL COMMENT '모집인원', -- 모집인원
   tot_hr     INTEGER      NOT NULL COMMENT '총강의시간', -- 총강의시간
@@ -122,7 +123,7 @@ ALTER TABLE managers
 CREATE TABLE centers (
   center_id INTEGER      NOT NULL COMMENT '교육센터번호', -- 교육센터번호
   name      VARCHAR(25)  NOT NULL COMMENT '지점명', -- 지점명
-  post_add  CHAR(6)      NULL     COMMENT '우편번호', -- 우편번호
+  post_no   CHAR(6)      NULL     COMMENT '우편번호', -- 우편번호
   bas_addr  VARCHAR(255) NULL     COMMENT '기본주소', -- 기본주소
   det_addr  VARCHAR(255) NOT NULL COMMENT '상세주소' -- 상세주소
 )
@@ -238,15 +239,15 @@ ALTER TABLE subjects
   MODIFY COLUMN subject_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '강의과목번호';
 
 -- 강사강의과목
-CREATE TABLE teachers_subject (
+CREATE TABLE teacher_subject (
   subject_id INTEGER NOT NULL COMMENT '강의과목번호', -- 강의과목번호
   teacher_id INTEGER NOT NULL COMMENT '강사번호' -- 강사번호
 )
 COMMENT '강사강의과목';
 
 -- 강사강의과목
-ALTER TABLE teachers_subject
-  ADD CONSTRAINT PK_teachers_subject -- 강사강의과목 기본키
+ALTER TABLE teacher_subject
+  ADD CONSTRAINT PK_teacher_subject -- 강사강의과목 기본키
     PRIMARY KEY (
       subject_id, -- 강의과목번호
       teacher_id  -- 강사번호
@@ -277,7 +278,7 @@ CREATE TABLE members (
   bas_addr    VARCHAR(255) NULL     COMMENT '기본주소', -- 기본주소
   det_addr    VARCHAR(255) NULL     COMMENT '상세주소', -- 상세주소
   last_sg_id  INTEGER      NOT NULL COMMENT '최종학력번호', -- 최종학력번호
-  lsat_school VARCHAR(25)  NOT NULL COMMENT '최종학교', -- 최종학교
+  last_school VARCHAR(25)  NOT NULL COMMENT '최종학교', -- 최종학교
   major       VARCHAR(25)  NOT NULL COMMENT '전공' -- 전공
 )
 COMMENT '회원';
@@ -305,26 +306,26 @@ ALTER TABLE members
   MODIFY COLUMN member_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '회원번호';
 
 -- 학력
-CREATE TABLE school_gradle (
+CREATE TABLE school_grade (
   sg_id INTEGER     NOT NULL COMMENT '학력번호', -- 학력번호
   name  VARCHAR(25) NOT NULL COMMENT '학력명' -- 학력명
 )
 COMMENT '학력';
 
 -- 학력
-ALTER TABLE school_gradle
-  ADD CONSTRAINT PK_school_gradle -- 학력 기본키
+ALTER TABLE school_grade
+  ADD CONSTRAINT PK_school_grade -- 학력 기본키
     PRIMARY KEY (
       sg_id -- 학력번호
     );
 
 -- 학력 유니크 인덱스
-CREATE UNIQUE INDEX UIX_school_gradle
-  ON school_gradle ( -- 학력
+CREATE UNIQUE INDEX UIX_school_grade
+  ON school_grade ( -- 학력
     name ASC -- 학력명
   );
 
-ALTER TABLE school_gradle
+ALTER TABLE school_grade
   MODIFY COLUMN sg_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '학력번호';
 
 -- 학생
@@ -408,8 +409,8 @@ ALTER TABLE room_photos
     );
 
 -- 강사강의과목
-ALTER TABLE teachers_subject
-  ADD CONSTRAINT FK_subjects_TO_teachers_subject -- 강의과목 -> 강사강의과목
+ALTER TABLE teacher_subject
+  ADD CONSTRAINT FK_subjects_TO_teacher_subject -- 강의과목 -> 강사강의과목
     FOREIGN KEY (
       subject_id -- 강의과목번호
     )
@@ -418,8 +419,8 @@ ALTER TABLE teachers_subject
     );
 
 -- 강사강의과목
-ALTER TABLE teachers_subject
-  ADD CONSTRAINT FK_teachers_TO_teachers_subject -- 강사 -> 강사강의과목
+ALTER TABLE teacher_subject
+  ADD CONSTRAINT FK_teachers_TO_teacher_subject -- 강사 -> 강사강의과목
     FOREIGN KEY (
       teacher_id -- 강사번호
     )
@@ -449,12 +450,21 @@ ALTER TABLE lecture_teacher
 
 -- 회원
 ALTER TABLE members
-  ADD CONSTRAINT FK_school_gradle_TO_members -- 학력 -> 회원
+  ADD CONSTRAINT FK_school_grade_TO_members -- 학력 -> 회원
     FOREIGN KEY (
       last_sg_id -- 최종학력번호
     )
-    REFERENCES school_gradle ( -- 학력
+    REFERENCES school_grade ( -- 학력
       sg_id -- 학력번호
     );
     
-    SET FOREIGN_KEY_CHECKS = 1;
+SET FOREIGN_KEY_CHECKS = 1;    
+    
+
+
+
+
+
+
+
+

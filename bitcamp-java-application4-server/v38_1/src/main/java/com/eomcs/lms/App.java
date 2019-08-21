@@ -1,4 +1,4 @@
-// v38_1 : 사진 게시판 만들기
+// v38_1 :사진 게시판 만들기
 package com.eomcs.lms;
 
 import java.io.BufferedReader;
@@ -15,12 +15,10 @@ import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.dao.LessonDao;
 import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.dao.PhotoBoardDao;
-import com.eomcs.lms.dao.PhotoFileDao;
 import com.eomcs.lms.dao.mariadb.BoardDaoImpl;
 import com.eomcs.lms.dao.mariadb.LessonDaoImpl;
 import com.eomcs.lms.dao.mariadb.MemberDaoImpl;
 import com.eomcs.lms.dao.mariadb.PhotoBoardDaoImpl;
-import com.eomcs.lms.dao.mariadb.PhotoFileDaoImpl;
 import com.eomcs.lms.handler.BoardAddCommand;
 import com.eomcs.lms.handler.BoardDeleteCommand;
 import com.eomcs.lms.handler.BoardDetailCommand;
@@ -52,15 +50,13 @@ public class App {
   Connection con;
   HashMap<String,Command> commandMap = new HashMap<>();
   int state;
-  
-  // 스레드풀
-  ExecutorService executorService = Executors.newCachedThreadPool();
-  
-  public App() throws Exception {
 
-    // 처음에는 클라이언트 요청을 처리해야 하는 상태로 설정한다.
+
+  ExecutorService executorService = Executors.newCachedThreadPool();
+
+  public App() throws Exception {
+    //처음에는 계속 클라이언트 요청을 처리해야 하는 상태로 설정한다
     state = CONTINUE;
-    
     try {
       // DAO가 사용할 Connection 객체 준비하기
       con = DriverManager.getConnection(
@@ -71,30 +67,27 @@ public class App {
       MemberDao memberDao = new MemberDaoImpl(con);
       LessonDao lessonDao = new LessonDaoImpl(con);
       PhotoBoardDao photoBoardDao = new PhotoBoardDaoImpl(con);
-      PhotoFileDao photoFileDao = new PhotoFileDaoImpl(con);
-
       // 클라이언트 명령을 처리할 커맨드 객체를 준비한다.
       commandMap.put("/lesson/add", new LessonAddCommand(lessonDao));
       commandMap.put("/lesson/delete", new LessonDeleteCommand(lessonDao));
       commandMap.put("/lesson/detail", new LessonDetailCommand(lessonDao));
-      commandMap.put("/lesson/list", new LessonListCommand(lessonDao));
+      commandMap.put("/lesson/list", new LessonListCommand( lessonDao));
       commandMap.put("/lesson/update", new LessonUpdateCommand(lessonDao));
 
       commandMap.put("/member/add", new MemberAddCommand(memberDao));
       commandMap.put("/member/delete", new MemberDeleteCommand(memberDao));
       commandMap.put("/member/detail", new MemberDetailCommand(memberDao));
-      commandMap.put("/member/list", new MemberListCommand(memberDao));
+      commandMap.put("/member/list", new MemberListCommand( memberDao));
       commandMap.put("/member/update", new MemberUpdateCommand(memberDao));
       commandMap.put("/member/search", new MemberSearchCommand(memberDao));
 
       commandMap.put("/board/add", new BoardAddCommand(boardDao));
       commandMap.put("/board/delete", new BoardDeleteCommand(boardDao));
       commandMap.put("/board/detail", new BoardDetailCommand(boardDao));
-      commandMap.put("/board/list", new BoardListCommand(boardDao));
+      commandMap.put("/board/list", new BoardListCommand( boardDao));
       commandMap.put("/board/update", new BoardUpdateCommand(boardDao));
-
-      commandMap.put("/photoboard/add", 
-          new PhotoBoardAddCommand(photoBoardDao, photoFileDao));
+      
+      commandMap.put("/photoboard/add", new PhotoBoardAddCommand(photoBoardDao));
       commandMap.put("/photoboard/delete", new PhotoBoardDeleteCommand(photoBoardDao));
       commandMap.put("/photoboard/detail", new PhotoBoardDetailCommand(photoBoardDao));
       commandMap.put("/photoboard/list", new PhotoBoardListCommand(photoBoardDao));
@@ -114,25 +107,26 @@ public class App {
       System.out.println("애플리케이션 서버가 시작되었음!");
 
       while (true) {
-        // 클라이언트가 접속하면 작업을 수행할 Runnable 객체를 만들어 스레드풀에 맡긴다.
+        //클라이언트가 접속하면 작업을 수행할 Runnable 객체를 만들어 스레드풀에 맡긴다
         executorService.submit(new CommandProcessor(serverSocket.accept()));
-        
-        // 한 클라이언트가 serverstop 명령을 보내면 종료 상태로 설정되고 
-        // 다음 요청을 처리할 때 즉시 실행을 멈춘다.
-        if (state == STOP)
+
+
+        //한 클라이언트가 serverstop 명려을 보내면 종료 상태로 설정되고
+        //다음 요청을 처리할 때 즉시 실행을 멈춘다.
+        if(state == STOP)
           break;
+
       }
 
-      // 스레드풀에게 실행 종료를 요청한다.
-      // => 스레드풀은 자신이 관리하는 스레드들이 실행이 종료되었는지 감시한다.
-      executorService.shutdown();
-      
-      // 스레드풀이 관리하는 모든 스레드가 종료되었는지 매 0.5초마다 검사한다.
-      // => 스레드풀의 모든 스레드가 실행을 종료했으면 즉시 main 스레드를 종료한다.
-      while (!executorService.isTerminated()) {
+      //스레드풀에게 실행 종료를 요청한다
+      //=>스레드풀은 자신이 관리하는 스레드들이 실행이 종료되었는지 감시한다
+      executorService.shutdown();      
+
+     //스레드풀이 관리하는 모든 스레드가 종료되었는지 매 0.5초마다 검사한다
+     //=>스레드풀의 모든 스레드가 실행을 종료했으면 즉시 main 스레드를 종료한다.
+      while(executorService.isTerminated()) {
         Thread.currentThread().sleep(500);
       }
-      
       System.out.println("애플리케이션 서버를 종료함!");
 
     } catch (Exception e) {
@@ -148,14 +142,17 @@ public class App {
     }
   }
 
-  class CommandProcessor implements Runnable {
-    
+
+
+
+  class CommandProcessor implements Runnable{
+
     Socket socket;
-    
+
     public CommandProcessor(Socket socket) {
       this.socket = socket;
     }
-    
+
     @Override
     public void run() {
       try (Socket socket = this.socket;
@@ -165,22 +162,22 @@ public class App {
 
         System.out.println("클라이언트와 연결됨!");
 
+
         // 클라이언트가 보낸 명령을 읽는다.
         String request = in.readLine();
         if (request.equals("quit")) {
-          out.println("Good bye!");
-          
+          out.println("Good bye");
         } else if (request.equals("serverstop")) {
           state = STOP;
-          out.println("Good bye!");
-          
-        } else {
-          // non-static 중첩 클래스는 바깥 클래스의 인스턴스 멤버를 사용할 수 있다.
+          out.println("Good bye");
+
+        }else {
+          //논스태틱 중첩클래스는 바깥 클래스의 인스턴스 멤버를 사용할수 있다
           Command command = commandMap.get(request);
           if (command == null) {
             out.println("해당 명령을 처리할 수 없습니다.");
-          } else {
-            command.excute(in, out);
+          }else{
+            command.excute(in, out);         
           }
         }
         out.println("!end!");
@@ -191,9 +188,12 @@ public class App {
       } catch (Exception e) {
         System.out.println("클라이언트와 통신 오류!");
       }
-    }
+
+    } 
   }
-  
+
+
+
   public static void main(String[] args) {
     try {
       App app = new App();
