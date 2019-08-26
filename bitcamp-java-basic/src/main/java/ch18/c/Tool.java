@@ -5,9 +5,9 @@ package ch18.c;
 public class Tool implements ProtocolA, ProtocolB {
   
   // 여러 규칙을 모두 만족시키려면 
-  // 여러 규칙의 모든 메서드를 구현해야 한다.
-  
+  // 여러 규칙의 모든 메서드를 구현해야 한다.  
   // ProtocolA 규칙에 따라 동작할 수 있도록 메서드를 구현
+  
   @Override
   public void m1() {
     System.out.println("Tool.m1()");

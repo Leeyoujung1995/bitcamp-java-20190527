@@ -21,10 +21,12 @@ repositories {
 }
 
 dependencies {
- compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.4.3'
+    // Mybatis Persostence Framework
+    compile group: 'org.mybatis', name: 'mybatis', version: '3.5.2'
+    //MariaDB JDBC Driver
+    compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.4.3'
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:27.1-jre'
-
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
 }
