@@ -1,4 +1,5 @@
-// v43_1 :Mybatis 도입하기
+// v43_2 :Mybatis 도입하기 + 도메인 클래스 별명 적용+SQL매퍼에 resultmap적용하기
+
 package com.eomcs.lms;
 
 import java.io.BufferedReader;
@@ -11,7 +12,6 @@ import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import com.eomcs.lms.dao.BoardDao;
@@ -94,10 +94,10 @@ public class App {
 
       // Command 객체가 사용할 데이터 처리 객체를 준비한다.
       BoardDao boardDao = new BoardDaoImpl(sqlSessionFactory);
-      MemberDao memberDao = new MemberDaoImpl(dataSource);
-      LessonDao lessonDao = new LessonDaoImpl(dataSource);
-      PhotoBoardDao photoBoardDao = new PhotoBoardDaoImpl(dataSource);
-      PhotoFileDao photoFileDao = new PhotoFileDaoImpl(dataSource);
+      MemberDao memberDao = new MemberDaoImpl(sqlSessionFactory);
+      LessonDao lessonDao = new LessonDaoImpl(sqlSessionFactory);
+      PhotoBoardDao photoBoardDao = new PhotoBoardDaoImpl(sqlSessionFactory);
+      PhotoFileDao photoFileDao = new PhotoFileDaoImpl(sqlSessionFactory);
 
       // 클라이언트 명령을 처리할 커맨드 객체를 준비한다.
       commandMap.put("/lesson/add", new LessonAddCommand(lessonDao));

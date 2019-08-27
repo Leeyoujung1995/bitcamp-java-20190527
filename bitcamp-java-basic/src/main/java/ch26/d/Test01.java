@@ -48,7 +48,12 @@ public class Test01 {
     Board board = sqlSession.selectOne("board.select2"); // OK!
     
     System.out.println(board);
+   //두개 이상의 결과를 리턴하는 select문을 실행할때는 selectOne()을 사용해서는 안된다.
+   // sqlSession.selectOne("board.select1");
+  
   }
+  
+  
 
 }
 

@@ -42,17 +42,25 @@
 
   -->
 
-  <select id="findAll" resultType="com.eomcs.lms.domain.Board">
+  <!-- 컬럼 이름과 자바 객체의 프로퍼티 이름을 연결한다 -->
+  <resultMap type="Board" id="BoardMap">
+    <id column="board_id" property="no"/>
+    <result column="conts" property="contents"/>
+     <result column="cdt" property="createdDate"/>
+      <result column="vw_cnt" property="viewCount"/>
+  </resultMap>
+
+  <select id="findAll" resultMap="BoardMap">
 
     select 
 
-      board_id as no, /* Board의 setNo(컬럼값)를 호출하여 컬럼값을 Board 객체에 담는다.*/
+      board_id , /* Board의 setNo(컬럼값)를 호출하여 컬럼값을 Board 객체에 담는다.*/
 
-      conts as contents, /* Board의 setContents(컬럼값) 호출 */
+      conts, /* Board의 setContents(컬럼값) 호출 */
 
-      cdt as createdDate, /* Board의 setCreatedDate(컬럼값) 호출 */
+      cdt , /* Board의 setCreatedDate(컬럼값) 호출 */
 
-      vw_cnt as viewCount /* Board의 setViewCount(컬럼값) 호출 */
+      vw_cnt  /* Board의 setViewCount(컬럼값) 호출 */
 
     from lms_board 
 
@@ -66,17 +74,17 @@
 
   parameterType="int" 
 
-  resultType="com.eomcs.lms.domain.Board">
+  resultMap="BoardMap">
 
     select
 
-      board_id as no, /* Board의 setNo(컬럼값)를 호출하여 컬럼값을 Board 객체에 담는다.*/
+      board_id , /* Board의 setNo(컬럼값)를 호출하여 컬럼값을 Board 객체에 담는다.*/
 
-      conts as contents, /* Board의 setContents(컬럼값) 호출 */
+      conts , /* Board의 setContents(컬럼값) 호출 */
 
-      cdt as createdDate, /* Board의 setCreatedDate(컬럼값) 호출 */
+      cdt , /* Board의 setCreatedDate(컬럼값) 호출 */
 
-      vw_cnt as viewCount /* Board의 setViewCount(컬럼값) 호출 */
+      vw_cnt /* Board의 setViewCount(컬럼값) 호출 */
 
     from lms_board
 
@@ -98,7 +106,7 @@
 
   
 
-  <insert id="insert" parameterType="com.eomcs.lms.domain.Board">
+  <insert id="insert" parameterType="Board">
 
     insert into lms_board(conts)
 
@@ -108,7 +116,7 @@
 
   
 
-  <update id="update" parameterType="com.eomcs.lms.domain.Board">
+  <update id="update" parameterType="Board">
 
     update lms_board set
 
