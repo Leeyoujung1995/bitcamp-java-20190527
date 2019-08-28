@@ -8,159 +8,152 @@
 
 <mapper namespace="MemberDao">
 
-   <resultMap type="Member" id="MemberMap">
-    <id column="member_id" property="no"/>
-      <result column="cdt" property="registeredDate"/>
-     
-  </resultMap>
- 
+	<resultMap type="Member" id="MemberMap">
+		<id column="member_id" property="no" />
+		<result column="cdt" property="registeredDate" />
 
-  <select id="findAll" resultMap="MemberMap">
+	</resultMap>
 
-    select 
 
-      member_id ,
+	<select id="findAll" resultMap="MemberMap">
 
-      name,
+		select
 
-      email,
+		member_id ,
 
-      tel,
+		name,
 
-      cdt 
+		email,
 
-    from lms_member
+		tel,
 
-    order by name asc
+		cdt
 
-  </select>
+		from lms_member
 
-  
+		order by name asc
 
-  <select id="findBy" 
+	</select>
 
-  parameterType="int" 
 
-  resultMap="MemberMap">
 
-    select
+	<select id="findBy" parameterType="int" resultMap="MemberMap">
 
-      member_id ,
+		select
 
-      name,
+		member_id ,
 
-      email,
+		name,
 
-      cdt ,
+		email,
 
-      tel,
+		cdt ,
 
-      photo
+		tel,
 
-    from lms_member
+		photo
 
-    where member_id=#{haha}
+		from lms_member
 
-  </select>
+		where member_id=#{haha}
 
-  
+	</select>
 
-  <insert id="insert" parameterType="Member">
 
-    insert into lms_member(name,email,pwd,cdt,tel,photo)
 
-    values(#{name}, #{email}, password(#{password}), now(), #{tel}, #{photo})
+	<insert id="insert" parameterType="Member">
 
-  </insert>
+		insert into lms_member(name,email,pwd,cdt,tel,photo)
 
-  
+		values(#{name}, #{email}, password(#{password}), now(), #{tel}, #{photo})
 
-  <update id="update" parameterType="Member">
+	</insert>
 
-    update lms_member set
 
-      name=#{name},
 
-      email=#{email},
+	<update id="update" parameterType="Member">
 
-      pwd=password(#{password}),
+		update lms_member 
+		<set>
+			<if test="name !=null"> name=#{name},</if>
 
-      tel=#{tel},
+			<if test="email !=null">email=#{email},</if>
 
-      photo=#{photo}
+			<if test="password !=null"> pwd=password(#{password}),</if>
 
-    where member_id=#{no}
+			<if test="tel !=null">tel=#{tel},</if>
 
-  </update>
+			<if test="photo !=null"> photo=#{photo}</if>
 
-  
+			
+		</set>
+		where member_id=#{no}
+	</update>
 
-  <delete id="delete" parameterType="int">
 
-    delete from lms_Member
 
-    where Member_id=#{value}
+	<delete id="delete" parameterType="int">
 
-  </delete>
+		delete from lms_Member
 
-  
+		where Member_id=#{value}
 
-  <select id="findByKeyword"
+	</delete>
 
-          parameterType="string" 
 
-          resultMap="MemberMap">
 
-    select 
+	<select id="findByKeyword" parameterType="string"
 
-      member_id ,
+		resultMap="MemberMap">
 
-      name,
+		select
 
-      email,
+		member_id ,
 
-      tel,
+		name,
 
-      cdt 
+		email,
 
-    from lms_member
+		tel,
 
-    where name like concat('%', #{name}, '%')
+		cdt
 
-      or email like concat('%', #{email}, '%')
+		from lms_member
 
-      or tel like concat('%', #{tel}, '%')
+		where name like concat('%', #{name}, '%')
 
-    order by name asc
+		or email like concat('%', #{email}, '%')
 
-  </select>
+		or tel like concat('%', #{tel}, '%')
 
-  
+		order by name asc
 
-  <select id="findByEmailPassword"
+	</select>
 
-          parameterType="Member" 
 
-          resultMap="MemberMap">
 
-    select 
+	<select id="findByEmailPassword" parameterType="Member"
 
-      member_id ,
+		resultMap="MemberMap">
 
-      name,
+		select
 
-      email,
+		member_id ,
 
-      tel,
+		name,
 
-      cdt 
+		email,
 
-    from lms_member
+		tel,
 
-    where email=#{email} and pwd=password(#{password})
+		cdt
 
-  </select>
+		from lms_member
 
-  
+		where email=#{email} and pwd=password(#{password})
+
+	</select>
+
+
 
 </mapper>

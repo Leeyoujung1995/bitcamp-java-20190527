@@ -8,127 +8,113 @@
 
 <mapper namespace="LessonDao">
 
-   <resultMap type="Lesson" id="LessonMap">
-    <id column="lesson_id" property="no"/>
-    <result column="titl" property="title"/>
-     <result column="sdt" property="startDate"/>
-      <result column="ent" property="endDate"/>
-      <result column="tot_hr" property="total_hours"/>
-      <result column="day_hr" property="day_hours"/>
-      <result column="conts" property="contents"/>
-  </resultMap>
- 
+	<resultMap type="Lesson" id="LessonMap">
+		<id column="lesson_id" property="no" />
+		<result column="titl" property="title" />
+		<result column="sdt" property="startDate" />
+		<result column="edt" property="endDate" />
+		<result column="tot_hr" property="totalHours" />
+		<result column="day_hr" property="dayHours" />
+		<result column="conts" property="contents" />
+	</resultMap>
 
-  <select id="findAll" resultMap="LessonMap">
 
-    select
+	<select id="findAll" resultMap="LessonMap">
 
-      lesson_id ,
+		select
+		lesson_id ,
+		titl ,
+		sdt ,
+		edt ,
+		tot_hr ,
+		day_hr
+		from
+		lms_lesson
+		order by
+		sdt desc
 
-      titl ,
+	</select>
 
-      sdt ,
 
-      edt ,
 
-      tot_hr ,
-      
-      day_hr 
+	<select id="findBy" parameterType="int" resultMap="LessonMap">
 
-    from
+		select
 
-      lms_lesson
+		lesson_id ,
 
-    order by
+		titl ,
 
-      sdt desc
+		conts ,
 
-  </select>
+		sdt ,
 
-  
+		edt ,
 
-  <select id="findBy" 
+		tot_hr ,
 
-          parameterType="int" 
+		day_hr
 
-          resultMap="LessonMap">
+		from
 
-    select
+		lms_lesson
 
-      lesson_id ,
+		where
 
-      titl ,
+		lesson_id=#{haha}
 
-      conts ,
+	</select>
 
-      sdt ,
 
-      edt ,
 
-      tot_hr ,
+	<insert id="insert" parameterType="Lesson">
 
-      day_hr 
+		insert into lms_lesson(sdt,edt,tot_hr,day_hr,titl,conts)
 
-    from
+		values(#{startDate},
 
-      lms_lesson
+		#{endDate},
 
-    where
+		#{totalHours},
 
-      lesson_id=#{haha}
+		#{dayHours},
 
-  </select>
+		#{title},
 
-  
+		#{contents})
 
-  <insert id="insert" parameterType="Lesson">
+	</insert>
 
-    insert into lms_lesson(sdt,edt,tot_hr,day_hr,titl,conts)
 
-    values(#{startDate},
 
-      #{endDate},
+	<update id="update" parameterType="Lesson">
 
-      #{totalHours},
+		update lms_lesson
+		<set>
+			<if test="title !=null">titl=#{title},</if>
 
-      #{dayHours},
+			<if test="contents !=null"> conts=#{contents},</if>
 
-      #{title},
+			<if test="startDate !=null">sdt=#{startDate},</if>
 
-      #{contents})
+			<if test="endDate !=null"> edt=#{endDate},</if>
 
-  </insert>
+			<if test="totalHours > 0">tot_hr=#{totalHours},</if>
 
-  
+			<if test="dayHours > 0">day_hr=#{dayHours}</if>
+		</set>
+		where lesson_id=#{no}
 
-  <update id="update" parameterType="Lesson">
+	</update>
 
-    update lms_lesson set
 
-    titl=#{title},
 
-      conts=#{contents},
+	<delete id="delete" parameterType="int">
 
-      sdt=#{startDate},
+		delete from lms_Lesson
 
-      edt=#{endDate},
+		where Lesson_id=#{value}
 
-      tot_hr=#{totalHours},
-
-      day_hr=#{dayHours}
-
-    where lesson_id=#{no}
-
-  </update>
-
-  
-
-  <delete id="delete" parameterType="int">
-
-    delete from lms_Lesson
-
-    where Lesson_id=#{value}
-
-  </delete>
+	</delete>
 </mapper>
   

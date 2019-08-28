@@ -27,24 +27,40 @@ public class LessonUpdateCommand implements Command {
       }
 
       //사용자로부터 변경할 값을 입력 받는다.
+      Lesson data = new Lesson();      
+      data.setNo(no);
+      
       String str =Input.getStringValue(in,out,"수업명(" +lesson.getTitle() + ")?");
       if(str.length() >0) {
-        lesson.setTitle(str);
+        data.setTitle(str);
       }
       str =Input.getStringValue(in,out,"수업내용?");
       if(str.length() >0) {
-        lesson.setTitle(str);
+        data.setContents(str);
       }
 
-      lesson.setStartDate(Input.getDateValue(in,out,"시작일(" +lesson.getStartDate()+")?"));
-
-      lesson.setEndDate( Input.getDateValue(in,out,"종료일(" +lesson.getStartDate()+")?"));
-
-      lesson.setTotalHours(Input.getIntValue(in,out,"총수업시간(" +lesson.getTotalHours()+")?"));
-
-      lesson.setDayHours(Input.getIntValue(in,out,"일수업시간(" +lesson.getDayHours()+")?"));
+      try {
+        data.setStartDate(Input.getDateValue(in,out,"시작일(" +lesson.getStartDate()+")?"));
+      }catch(Exception e) {
+        //클라이언트가 보낸 날짜가 유효하지 않으면 무시
+      }
+      try {
+        data.setEndDate( Input.getDateValue(in,out,"종료일(" +lesson.getStartDate()+")?"));
+      }catch(Exception e) {
+        //무시
+      }
+      try {
+        data.setTotalHours(Input.getIntValue(in,out,"총수업시간(" +lesson.getTotalHours()+")?"));
+      }catch(Exception e) {
+        //무시
+      }
+      try {
+        data.setDayHours(Input.getIntValue(in,out,"일수업시간(" +lesson.getDayHours()+")?"));
+      }catch(Exception e) {
+        //무시
+      }
       out.println("데이터가 변경되었습니다.");
-      lessonDao.update(lesson);
+      lessonDao.update(data);
 
     }catch (Exception e) {
       out.println("데이터 변경에 실패했습니다!");
