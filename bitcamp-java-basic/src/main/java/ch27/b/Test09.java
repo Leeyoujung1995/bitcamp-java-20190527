@@ -9,8 +9,27 @@ public class Test09 {
     
     Class<?> superClass = clazz.getSuperclass();
     System.out.println(superClass.getName());
+    System.out.println("-------------------------------");
+    
+    printSuperClassName(clazz,0);
+  }
+  
+  static void printSuperClassName(Class<?> clazz,int level) {
+    printIndent(level);
+    
+    System.out.println(clazz.getName());
+    if(clazz == Object.class)
+      return;
+    
+    printSuperClassName(clazz.getSuperclass(),level+1);
   }
 
+  
+  static void printIndent(int level) {
+    for(int i=0; i<level; i++)
+      System.out.println(" ");
+    
+  }
 }
 
 

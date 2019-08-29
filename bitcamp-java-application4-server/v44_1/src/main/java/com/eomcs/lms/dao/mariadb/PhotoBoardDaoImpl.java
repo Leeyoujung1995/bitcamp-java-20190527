@@ -31,8 +31,19 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
   @Override
   public PhotoBoard findBy(int no) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      PhotoBoard board = sqlSession.selectOne("PhotoBoardDao.findBy",no);
-      if(board != null) {
+      PhotoBoard board = sqlSession.selectOne("PhotoBoardDao.findBy", no);
+      if (board != null) {
+        sqlSession.update("PhotoBoardDao.increaseViewCount", no);
+      }
+      return board;
+    }
+  }
+  
+  @Override
+  public PhotoBoard findWithFilesBy(int no) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      PhotoBoard board = sqlSession.selectOne("PhotoBoardDao.findWithFilesBy", no);
+      if (board != null) {
         sqlSession.update("PhotoBoardDao.increaseViewCount", no);
       }
       return board;

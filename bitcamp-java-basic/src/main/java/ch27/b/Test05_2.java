@@ -1,4 +1,4 @@
-// reflection API - 메서드의 상세정보 꺼내기
+ // reflection API - 메서드의 상세정보 꺼내기
 package ch27.b;
 
 import java.lang.reflect.Method;
@@ -8,7 +8,7 @@ import java.lang.reflect.Parameter;
 // 어떤 클래스나 인터페이스의 스태틱 멤버를 import 할 수 있다.
 import static java.lang.reflect.Modifier.*;
 
-public class Test05 {
+public class Test05_2 {
 
   public static void main(String[] args) throws Exception {
     
