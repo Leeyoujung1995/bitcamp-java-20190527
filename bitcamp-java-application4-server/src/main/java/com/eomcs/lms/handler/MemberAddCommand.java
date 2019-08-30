@@ -15,6 +15,11 @@ public class MemberAddCommand implements Command {
     this.memberDao = memberDao;
   }
 
+  public String getCommandName() {
+    return "/member/add";
+  }
+   
+  
   @Override
   public void excute(BufferedReader in ,PrintStream out) {
 

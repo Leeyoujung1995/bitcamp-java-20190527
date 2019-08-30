@@ -23,6 +23,10 @@ public class PhotoBoardAddCommand implements Command {
     this.photoFileDao = photoFileDao;
   }
 
+  public String getCommandName() {
+    return "/photoboard/add";
+  }
+   
   @Override
   public void excute(BufferedReader in, PrintStream out) {
   

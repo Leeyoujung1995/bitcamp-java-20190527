@@ -15,7 +15,7 @@ public class MybatisDaoFactory {
   }
 
   @SuppressWarnings("unchecked")
-  public <T> T creatDao(Class<T> clazz) {
+  public <T> T createDao(Class<T> clazz) {
     return (T)Proxy.newProxyInstance(
         clazz.getClassLoader(),
         new Class[] {clazz},       

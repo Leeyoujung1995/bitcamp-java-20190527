@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.PrintStream;
 
 public interface Command {
+  String getCommandName();
   default void excute() {}//기존 규칙은 그대로 둔다
   
   //새규칙을 추가한다.

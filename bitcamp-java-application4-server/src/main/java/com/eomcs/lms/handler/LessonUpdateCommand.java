@@ -14,7 +14,10 @@ public class LessonUpdateCommand implements Command {
     this.lessonDao=lessonDao;
   }
 
-
+  public String getCommandName() {
+    return "/lesson/update";
+  }
+   
   @Override
   public void excute(BufferedReader in ,PrintStream out) {
     //사용자가 입력한 번호를 가지고 목록에서 그 번호에 해당하는 Lesson 객체를 찾는다.

@@ -22,6 +22,10 @@ public class PhotoBoardUpdateCommand implements Command {
     this.photoFileDao = photoFileDao;
   }
 
+  public String getCommandName() {
+    return "/photoboard/update";
+  }
+   
   @Override
   public void excute(BufferedReader in ,PrintStream out) {
     

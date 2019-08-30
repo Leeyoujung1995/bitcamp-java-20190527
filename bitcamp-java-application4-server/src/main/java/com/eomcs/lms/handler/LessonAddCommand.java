@@ -14,6 +14,11 @@ public class LessonAddCommand implements Command{
   public LessonAddCommand(LessonDao lessonDao) {
     this.lessonDao = lessonDao;
   }
+  
+  public String getCommandName() {
+    return "/lesson/add";
+  }
+   
   @Override
   public  void excute(BufferedReader in ,PrintStream out) {
     // 수업 데이터를 저장할 메모리를 Lesson 설계도에 따라 만든다.

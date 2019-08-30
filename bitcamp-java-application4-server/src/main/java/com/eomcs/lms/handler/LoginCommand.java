@@ -18,6 +18,10 @@ public class LoginCommand implements Command {
   public LoginCommand(MemberDao memberDao) {
     this.memberDao = memberDao;
   }
+  public String getCommandName() {
+    return "/auth/login";
+  }
+   
   @Override
   public void excute(BufferedReader in ,PrintStream out) {
 

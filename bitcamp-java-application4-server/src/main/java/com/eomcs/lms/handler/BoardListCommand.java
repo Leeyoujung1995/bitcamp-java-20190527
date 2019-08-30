@@ -5,6 +5,7 @@ import java.io.PrintStream;
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.checkerframework.common.reflection.qual.GetConstructor;
 import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.domain.Board;
 
@@ -16,6 +17,10 @@ public class BoardListCommand implements Command {
     this.sqlSessionFactory = sqlSessionFactory;
   }
 
+ public String getCommandName() {
+   return "/board/list";
+ }
+  
   @Override
   public void excute(BufferedReader in ,PrintStream out) {
     try(SqlSession sqlSession = sqlSessionFactory.openSession()) {

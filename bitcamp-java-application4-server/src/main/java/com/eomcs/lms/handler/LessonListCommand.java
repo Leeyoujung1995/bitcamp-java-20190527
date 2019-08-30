@@ -16,7 +16,10 @@ public class LessonListCommand implements Command{
    this.input=input;
    this.lessonDao = lessonDao;
  }
- 
+ public String getCommandName() {
+   return "/lesson/list";
+ }
+  
  
 @Override
  public  void excute(BufferedReader in ,PrintStream out) {

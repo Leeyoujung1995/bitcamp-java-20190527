@@ -15,6 +15,11 @@ public class BoardDeleteCommand implements Command {
     this.sqlSessionFactory = sqlSessionFactory;
   }
 
+  public String getCommandName() {
+    return "/board/delete";
+  }
+   
+  
   @Override
   public void excute(BufferedReader in ,PrintStream out) {
     try(SqlSession sqlSession = sqlSessionFactory.openSession()) {

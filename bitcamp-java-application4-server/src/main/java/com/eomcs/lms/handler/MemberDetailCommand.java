@@ -15,6 +15,10 @@ public class MemberDetailCommand implements Command {
     this.memberDao = memberDao;
   }
 
+  public String getCommandName() {
+    return "/member/detail";
+  }
+   
   @Override
   public void excute(BufferedReader in ,PrintStream out) {
 
@@ -22,7 +26,7 @@ public class MemberDetailCommand implements Command {
       int no = Input.getIntValue(in,out,"번호? ");
       Member member = memberDao.findBy(no);
       if (member == null) {
-        System.out.println("해당 번호의 데이터가 없습니다!");
+        out.println("해당 번호의 데이터가 없습니다!");
         return;
       }
       out.printf("이름: %s\n", member.getName());

@@ -15,6 +15,11 @@ public class BoardUpdateCommand implements Command {
   public BoardUpdateCommand(SqlSessionFactory sqlSessionFactory) {
     this.sqlSessionFactory = sqlSessionFactory;
   }
+  
+  public String getCommandName() {
+    return "/board/update";
+  }
+   
   @Override
   public void excute(BufferedReader in ,PrintStream out) {
 

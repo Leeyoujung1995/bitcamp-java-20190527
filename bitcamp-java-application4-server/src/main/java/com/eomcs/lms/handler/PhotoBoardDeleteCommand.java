@@ -19,6 +19,10 @@ public class PhotoBoardDeleteCommand implements Command {
     this.photoFileDao = photoFileDao;
   }
 
+  public String getCommandName() {
+    return "/photoboard/delete";
+  }
+   
   @Override
   public void excute(BufferedReader in ,PrintStream out) {
  
