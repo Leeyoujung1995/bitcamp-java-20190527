@@ -5,8 +5,8 @@ import java.io.PrintStream;
 import java.util.List;
 import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.domain.Member;
-import com.eomcs.util.Input;
-
+import com.eomcs.util.Component;
+@Component("/member/list")
 public class MemberListCommand implements Command {
   private MemberDao memberDao;
   
@@ -14,9 +14,7 @@ public class MemberListCommand implements Command {
     this.memberDao = memberDao;
   }
   
-  public String getCommandName() {
-    return "/member/list";
-  }
+
    
   @Override
   public void excute(BufferedReader in ,PrintStream out) {

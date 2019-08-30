@@ -2,28 +2,24 @@ package com.eomcs.lms.handler;
 
 import java.io.BufferedReader;
 import java.io.PrintStream;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 import com.eomcs.lms.dao.BoardDao;
+import com.eomcs.util.Component;
 import com.eomcs.util.Input;
-
+@Component("/board/delete")
 public class BoardDeleteCommand implements Command {
 
-  private SqlSessionFactory sqlSessionFactory;
+  private BoardDao boardDao;
+;
 
-  public BoardDeleteCommand(SqlSessionFactory sqlSessionFactory) {
-    this.sqlSessionFactory = sqlSessionFactory;
+  public BoardDeleteCommand(BoardDao boardDao) {
+    this.boardDao = boardDao;
   }
 
-  public String getCommandName() {
-    return "/board/delete";
-  }
-   
+
   
   @Override
   public void excute(BufferedReader in ,PrintStream out) {
-    try(SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+    try {
       int no = Input.getIntValue(in,out,"번호? ");
       if (boardDao.delete(no) > 0) {
         out.println("데이터를 삭제하였습니다.");

@@ -3,29 +3,23 @@ package com.eomcs.lms.handler;
 import java.io.BufferedReader;
 import java.io.PrintStream;
 import java.util.List;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.checkerframework.common.reflection.qual.GetConstructor;
 import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.domain.Board;
-
+import com.eomcs.util.Component;
+@Component("/board/list")
 public class BoardListCommand implements Command {
 
-  private SqlSessionFactory sqlSessionFactory;
+  private BoardDao boardDao;
 
-  public BoardListCommand(SqlSessionFactory sqlSessionFactory) {
-    this.sqlSessionFactory = sqlSessionFactory;
+  public BoardListCommand( BoardDao boardDao) {
+    this.boardDao = boardDao;
   }
 
- public String getCommandName() {
-   return "/board/list";
- }
+
   
   @Override
   public void excute(BufferedReader in ,PrintStream out) {
-    try(SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
-
+    try{
       List<Board> boards = boardDao.findAll();
       for (Board board : boards) {
         out.printf("%s, %s, %s, %s\n", 

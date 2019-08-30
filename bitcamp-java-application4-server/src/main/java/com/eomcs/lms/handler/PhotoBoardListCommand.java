@@ -1,3 +1,4 @@
+
 package com.eomcs.lms.handler;
 
 import java.io.BufferedReader;
@@ -5,7 +6,8 @@ import java.io.PrintStream;
 import java.util.List;
 import com.eomcs.lms.dao.PhotoBoardDao;
 import com.eomcs.lms.domain.PhotoBoard;
-
+import com.eomcs.util.Component;
+@Component("/photoboard/list")
 public class PhotoBoardListCommand implements Command {
   
   private PhotoBoardDao photoBoardDao;
@@ -14,9 +16,7 @@ public class PhotoBoardListCommand implements Command {
     this.photoBoardDao = photoBoardDao;
   }
   
-  public String getCommandName() {
-    return "/photoboard/list";
-  }
+
    
   @Override
   public void excute(BufferedReader in ,PrintStream out) {

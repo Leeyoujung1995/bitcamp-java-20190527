@@ -5,8 +5,9 @@ import java.io.PrintStream;
 import java.util.HashMap;
 import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.domain.Member;
+import com.eomcs.util.Component;
 import com.eomcs.util.Input;
-
+@Component("/auth/login")
 public class LoginCommand implements Command {
   private MemberDao memberDao;
 
@@ -18,10 +19,7 @@ public class LoginCommand implements Command {
   public LoginCommand(MemberDao memberDao) {
     this.memberDao = memberDao;
   }
-  public String getCommandName() {
-    return "/auth/login";
-  }
-   
+
   @Override
   public void excute(BufferedReader in ,PrintStream out) {
 

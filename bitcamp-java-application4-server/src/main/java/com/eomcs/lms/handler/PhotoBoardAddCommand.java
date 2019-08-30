@@ -6,9 +6,10 @@ import com.eomcs.lms.dao.PhotoBoardDao;
 import com.eomcs.lms.dao.PhotoFileDao;
 import com.eomcs.lms.domain.PhotoBoard;
 import com.eomcs.lms.domain.PhotoFile;
+import com.eomcs.util.Component;
 import com.eomcs.util.Input;
 import com.eomcs.util.PlatformTransactionManager;
-
+@Component("/photoboard/add")
 public class PhotoBoardAddCommand implements Command {
   
   private PlatformTransactionManager txManager;
@@ -23,9 +24,7 @@ public class PhotoBoardAddCommand implements Command {
     this.photoFileDao = photoFileDao;
   }
 
-  public String getCommandName() {
-    return "/photoboard/add";
-  }
+
    
   @Override
   public void excute(BufferedReader in, PrintStream out) {

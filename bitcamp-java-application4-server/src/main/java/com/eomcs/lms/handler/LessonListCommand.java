@@ -6,21 +6,17 @@ import java.io.PrintStream;
 import java.util.List;
 import com.eomcs.lms.dao.LessonDao;
 import com.eomcs.lms.domain.Lesson;
-import com.eomcs.util.Input;
-
+import com.eomcs.util.Component;
+@Component("/lesson/list")
 public class LessonListCommand implements Command{
  private LessonDao lessonDao ;
- private  Input input;
+
  
  public LessonListCommand(LessonDao lessonDao) {
-   this.input=input;
+ 
    this.lessonDao = lessonDao;
  }
- public String getCommandName() {
-   return "/lesson/list";
- }
-  
- 
+
 @Override
  public  void excute(BufferedReader in ,PrintStream out) {
   try {

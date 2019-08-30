@@ -2,20 +2,18 @@ package com.eomcs.lms.handler;
 
 import java.io.BufferedReader;
 import java.io.PrintStream;
-import java.util.HashMap;
 import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.domain.Member;
+import com.eomcs.util.Component;
 import com.eomcs.util.Input;
-
+@Component("/member/update")
 public class MemberUpdateCommand implements Command {
   private MemberDao memberDao;
 
   public MemberUpdateCommand( MemberDao memberDao) {
     this.memberDao = memberDao;
   }
-  public String getCommandName() {
-    return "/member/update";
-  }
+
    
   @Override
   public void excute(BufferedReader in ,PrintStream out) {
