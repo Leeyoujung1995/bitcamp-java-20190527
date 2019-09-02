@@ -3,12 +3,13 @@ package com.eomcs.lms.handler;
 import java.io.BufferedReader;
 import java.io.PrintStream;
 import java.util.HashMap;
+import org.springframework.stereotype.Component;
 import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.domain.Member;
-import com.eomcs.util.Component;
 import com.eomcs.util.Input;
-@Component("/auth/login")
-public class LoginCommand implements Command {
+import com.eomcs.util.RequestMapping;
+@Component
+public class LoginCommand  {
   private MemberDao memberDao;
 
   // BoardHandler가 사용하는 Input 객체를 반드시 설정하도록 강제해보자!
@@ -20,7 +21,7 @@ public class LoginCommand implements Command {
     this.memberDao = memberDao;
   }
 
-  @Override
+  @RequestMapping("/auth/login")
   public void excute(BufferedReader in ,PrintStream out) {
 
 
