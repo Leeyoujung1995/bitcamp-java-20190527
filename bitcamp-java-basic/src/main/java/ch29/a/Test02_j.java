@@ -3,15 +3,16 @@ package ch29.a;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import ch29.SpringUtils;
 
 public class Test02_j {
-  public static void main(String[] args) {
+  public static void main(String[] args)throws Exception {
     // 객체 생성
     // @Bean public Student b1() { return new Student(); }
     //
     ApplicationContext iocContainer = 
         new AnnotationConfigApplicationContext(AppConfig02.class);
-    
+    SpringUtils.printObjects(iocContainer);
     // 스프링 IoC 컨테이너가 생성한 객체 꺼내기
     Student b1 = (Student) iocContainer.getBean("b1");
     System.out.println(b1);

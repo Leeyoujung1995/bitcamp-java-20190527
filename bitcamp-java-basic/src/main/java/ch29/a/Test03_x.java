@@ -3,15 +3,17 @@ package ch29.a;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import ch29.SpringUtils;
 
 public class Test03_x {
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception{
     // 빈을 자동으로 생성하고 싶은 클래스에 
     // @Component 등의 애노테이션을 붙인다.
     //
     ApplicationContext iocContainer = 
         new ClassPathXmlApplicationContext("ch29/a/application-context-03.xml");
     
+    SpringUtils.printObjects(iocContainer);
     // 스프링 IoC 컨테이너가 생성한 객체 꺼내기
     // => @Component 가 붙은 클래스의 인스턴스를 꺼낼 때는 
     //    클래스이름으로 꺼낸다. 단 클래스의 첫 번째 알파벳은 소문자로 지정한다.
