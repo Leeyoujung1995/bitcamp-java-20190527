@@ -41,6 +41,17 @@
     <property name="createdDate" value="2019-3-19"/>
   </bean>
   
+  <!-- 
+  CustomerEditorConfigur configurer = beanContainer.getBean(CustomEditorConfigerer.class);
+  Map<Class,Class>map = configurer.getCustomEditors();
+  Class editorClass = map.get(Date.class);
+  Constructor const = editorClass.getConstructor();
+  PropertyEditor propEditor = const.newInstance();//MyCustomDateEditor리턴
+  propEditor.setAsTest("2019-3-19");
+  Date value = propEditor.getValye();
+  c1.setCreatedDate();
+   -->
+
 </beans>
 
 

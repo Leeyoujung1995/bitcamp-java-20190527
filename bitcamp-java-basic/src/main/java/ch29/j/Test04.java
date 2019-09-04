@@ -3,6 +3,7 @@ package ch29.j;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import ch29.SpringUtils;
 
 public class Test04 {
   public static void main(String[] args) {
@@ -10,6 +11,9 @@ public class Test04 {
     ApplicationContext iocContainer = 
         new AnnotationConfigApplicationContext(AppConfig4.class);
     
+    
+    System.out.println("---------------------------------------");
+    SpringUtils.printObjects(iocContainer);
     System.out.println("---------------------------------------");
     
     String[] names = iocContainer.getBeanDefinitionNames();
@@ -18,6 +22,8 @@ public class Test04 {
           name, iocContainer.getBean(name).getClass().getName());
     }
     
+    System.out.println("---------------------------------------");
+    SpringUtils.printObjects(iocContainer);
     System.out.println("---------------------------------------");
     
     System.out.println(iocContainer.getBean("car1"));
