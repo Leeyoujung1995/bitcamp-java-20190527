@@ -13,9 +13,14 @@ import org.springframework.context.annotation.Configuration;
 
 // Mybatis와 스프링 IoC 컨테이너를 연동하는 설정
 // => Mybatis 관련 빈 설정
+//DAO 구현체 자동 생성
+//@MapperScan(DAO 인터페이스가 들어 있는 패키지)
+//DAO 인터페이스를 구현한 객체를 자동으로 생성하여 IoC 컨테이너에 보괸힌다
+//DAO 객체의 메서드를 호출할 때 인터페이스 이름과 메서드명을 합쳐서
+//SQL문을 Mapper파일에서 찾는다.
+//=>Mapper파일의 namespace에 설정된대로 인터페이스를 찾아
+//그 인터페이스를 구현한 클래슬르 자동으로 생성하고 객체를 IoC 컨테이너에 등록한다
 
-// Mybatis DAO 구현체 자동 생성하기
-// => @MapperScan(DAO 인터페이스가 들어 있는 패키지)
 @MapperScan("ch29.k1.dao")
 
 public class MybatisConfig {
@@ -24,6 +29,11 @@ public class MybatisConfig {
   @Bean
   public SqlSessionFactory sqlSessionFactory(
       DataSource dataSource, ApplicationContext appCtx) throws Exception {
+    // SqlsessionFactory를 만들때 기존의 SqlSessionFactoryBuilder를 사용하면
+    // Mybatis설정 파일(예:mybatis-config.xml)이 필요하다
+    // 이런 설정 파일없이 스프링 IoC 컨테이너에서 SqlSessionFactory를 만들  수 있도록
+    // 도와주는 클래스 SqlSessionFactoryBean이다
+    //이 클래스는 mybatis spring 라이브러리에 들어있기 떄문에 별도의 다운로드가 필요하다
     // SqlSessionFactoryBean 클래스는 FactoryBean 인터페이스를 구현한 클래스이다.
     // 보통 FactoryBean 구현체의 이름을 정의할 때는 
     // "생성하는 객체의 클래스명 + FactoryBean" 이름으로 짓는다. 예) CarFactoryBean
@@ -46,6 +56,7 @@ public class MybatisConfig {
     // SQL 매퍼 파일이 위치를 지정하기
     // => SQL Mapper 파일의 경로는 Resource 객체 배열에 담아 넘긴다.
     // => Resource 객체는 스프링 IoC 컨테이너를 통해 얻을 수 있다.
+   
     sqlSessionFactoryBean.setMapperLocations(
         appCtx.getResources("classpath:ch29/k1/mapper/*.xml"));
     
