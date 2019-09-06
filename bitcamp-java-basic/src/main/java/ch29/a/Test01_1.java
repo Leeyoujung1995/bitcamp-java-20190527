@@ -59,7 +59,7 @@ public class Test01_1 {
     // => 생성자에 설정 정보를 갖고 있는 클래스의 타입 정보를 넘긴다. 
     ApplicationContext iocContainer3 = 
         new AnnotationConfigApplicationContext(AppConfig.class);
-    
+   
     System.out.println("실행 완료!");
   }
 }
