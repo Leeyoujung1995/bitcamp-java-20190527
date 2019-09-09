@@ -9,20 +9,9 @@
 plugins {
     // Apply the java plugin to add support for Java
     id 'java'
-    id 'eclipse-wtp'
+    id 'eclipse'
     // Apply the application plugin to add support for building a CLI application
-    //웹 애플리케이션 프로젝트를 다룰 때 사용할 명령어 포함시키기
-    id 'war'
-}
-
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
-    sourceCompatibility = '1.8'
-    targetCompatibility = '1.8'
-}
-
-war{
-  archiveName = 'app4.war'
+    id 'application'
 }
 
 repositories {
@@ -49,9 +38,10 @@ dependencies {
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.12.1'
     // 여기에 지정한 라이브러리를 위의 저장소에 자동으로 다운로드 받는다.
     compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.9'
-    //Servlet API
-    providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
-    
     
 }
 
+application {
+    // Define the main class for the application
+    mainClassName = 'com.eomcs.lms.App'
+}
