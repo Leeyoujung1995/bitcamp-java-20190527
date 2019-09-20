@@ -24,6 +24,6 @@ dependencies {
     compile group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
     //thumbnailator
     compile group: 'net.coobird', name: 'thumbnailator', version: '0.4.8'
-    
+    compile group: 'javax.servlet', name: 'jstl', version: '1.2'
 }
 
