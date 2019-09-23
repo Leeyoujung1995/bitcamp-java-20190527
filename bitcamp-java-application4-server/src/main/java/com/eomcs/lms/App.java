@@ -1,15 +1,11 @@
-// v57_2 :jsp에 el적용하기
+// v58_2 :page Controller를 일반 클래스(pojo:Plain Old java Object)로 전환하기
 package com.eomcs.lms;
 
 // 작업:
-//=>/webapp/jsp/board폴더 생성
-//=>BoardXxxServlet에서 출력 기능을 jsp로 이전
-//=>/webapp/jsp/board/*.jsp생성
-// dummy 클래스!
-// => 기존 버전에서 계속 존재했던 클래스라서 그대로 둠.
-// => 단지 버전의 목표에 대한 설명을 기록하기 위해 존재함.
-// => 프로젝트에서 사용되지 않음!
-//
+//=>Command 인터페이스 생성
+//=>XxxServlet을 XxxCommand로 전환
+//=>커맨드 객체의 관리 주체를 서블릿 컨테이너에서 Spring IoC 컨테이너로 이전
+//=>DispatcherServlet변경
 public class App {
 }
 
