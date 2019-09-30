@@ -18,7 +18,7 @@ public class Controller02_1 {
   public String handler1() {
     return "get";
   }
-  
+  ;
   @RequestMapping(method = RequestMethod.POST) // POST 요청일 때만 호출된다. 
   @ResponseBody 
   public String handler2() {
